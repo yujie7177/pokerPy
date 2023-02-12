@@ -8,9 +8,11 @@ def main():
     for i in range(10000):
         a = BH()
         for x in a:
-            JockerNm.append(a[x].count('🤡'))
-            jockerNm.append(a[x].count('👻'))
-            JNm.append(a[x].count('🤡')+a[x].count('👻'))
+            Jockernm = a[x].count('🤡')
+            jockernm = a[x].count('👻')
+            JockerNm.append(Jockernm)
+            jockerNm.append(jockernm)
+            JNm.append(jockernm+Jockernm)
     lenjnm = len(JNm)
     print("8个王的概率为{}%".format(JNm.count(8)/(lenjnm/100)))
     print("7个王的概率为{}%".format(JNm.count(7)/(lenjnm/100)))
