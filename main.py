@@ -26,9 +26,6 @@ def main():
 def BH():
     index = [chr(i) for i in range(65, 91)]
 
-    # 保皇
-    # cards = shuffle()*4
-    # random.shuffle(cards)
     cards = shuffle()
     a = 5
     c = {}
@@ -50,27 +47,9 @@ def shuffle():
            # '3', '4', '5',
            '6', '7', '8', '9', '10', 'J', 'Q', 'K']
     jocker = ['🤡', '👻']
-    # lensuit = len(suit)
-    # lennum = len(num)
-    # total = lensuit*lennum
-    # cards = []
-    # while len(cards) < total:
-    #     i1 = random.randint(0, lensuit-1)
-    #     i2 = random.randint(0, lennum-1)
-    #     card = suit[i1] + ' ' + num[i2]
-    #     if card not in cards:
-    #         cards.append(card)
-    # i3 = random.randint(0, total)
-    # cards.insert(i3, jocker[0])
-    # i4 = random.randint(0, total+1)
-    # cards.insert(i4, jocker[1])
-    cards = []
-    # for x in suit:
-    #     for y in num:
-    #         card = x + ' ' + y
-    #         cards.append(card)
     cards = [x + ' ' + y for x in suit for y in num]
     cards = cards + jocker
+    # 保皇
     cards = cards*4
     random.shuffle(cards)
 
