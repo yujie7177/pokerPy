@@ -1,28 +1,41 @@
 import random
+from openpyxl import Workbook , load_workbook
 
 
 def main():
-    JockerNm = []
-    jockerNm = []
-    JNm = []
+    num = ['_Jocker',  '_J', '_j', '2', 'A',
+           'K', 'Q', 'J', '10', '9', '8', '7', '6']
+    wb = load_workbook('output.xlsx')
+    sheet = wb['Sheet1']
+    for nm in num:
+        exec('count' + nm + '=[]')
     for i in range(10000):
         a = BH()
-        for x in a:
-            Jockernm = a[x].count('🤡')
-            jockernm = a[x].count('👻')
-            JockerNm.append(Jockernm)
-            jockerNm.append(jockernm)
-            JNm.append(jockernm+Jockernm)
-    lenjnm = len(JNm)
-    print("8个王的概率为{}%".format(JNm.count(8)/(lenjnm/100)))
-    print("7个王的概率为{}%".format(JNm.count(7)/(lenjnm/100)))
-    print("6个王的概率为{}%".format(JNm.count(6)/(lenjnm/100)))
-    print("5个王的概率为{}%".format(JNm.count(5)/(lenjnm/100)))
-    print("4个王的概率为{}%".format(JNm.count(4)/(lenjnm/100)))
-    print("3个王的概率为{}%".format(JNm.count(3)/(lenjnm/100)))
-    print("2个王的概率为{}%".format(JNm.count(2)/(lenjnm/100)))
-    print("1个王的概率为{}%".format(JNm.count(1)/(lenjnm/100)))
-    print("0个王的概率为{}%".format(JNm.count(0)/(lenjnm/100)))
+        for i in a:
+            c = [x[3:] if len(x) > 3 else x for x in a[i]]
+            for b in num:
+                if '_' not in b:
+                    exec('count' + b + ".append(c.count('{}'))".format(b))
+            jnm = c.count('👻')
+            Jnm = c.count('🤡')
+            exec('count_j.append({})'.format(jnm))
+            exec('count_J.append({})'.format(Jnm))
+            exec('count_Jocker.append({})'.format(jnm + Jnm))
+
+    for d in num:
+        gg = 67
+        g = chr(gg)
+        for y in range(17):
+            exec("gl = count{}.count(y)/(len(count{})/100)".format(d, d))
+            if '_' not in d:
+                exec("print('{}个{}的概率为'+str(gl)+'%')".format(str(y), d))
+            elif d == '_j':
+                exec("print('{}个{}的概率为'+str(gl)+'%')".format(str(y), '小王'))
+            elif d == '_J':
+                exec("print('{}个{}的概率为'+str(gl)+'%')".format(str(y), '大王'))
+            else:
+                exec("print('{}个{}的概率为'+str(gl)+'%')".format(str(y), '王'))
+            
 
 
 def BH():
@@ -31,8 +44,8 @@ def BH():
     cards = shuffle()
     a = 5
     c = {}
-    d = {'J': 11, 'Q': 12, 'K': 13}
-    e = {'1': 14, '2': 15}
+    d = {'J': 11, 'Q': 12, 'K': 13, 'A': 14}
+    e = {'2': 15}
     for i in range(a):
         b = [cards[i+x*a]
              for x in range(int(len(cards)/a)+1) if i+x*a < len(cards)]
@@ -44,7 +57,7 @@ def BH():
 
 def shuffle():
     suit = ['❤️', '♠️', '♦️', '♣️']
-    num = ['1', '2',
+    num = ['A', '2',
            # 保皇去掉
            # '3', '4', '5',
            '6', '7', '8', '9', '10', 'J', 'Q', 'K']
