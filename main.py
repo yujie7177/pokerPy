@@ -1,15 +1,18 @@
+import datetime
 import random
-from openpyxl import Workbook , load_workbook
+
+from openpyxl import load_workbook
 
 
 def main():
+    start_time = datetime.datetime.now()
     num = ['_Jocker',  '_J', '_j', '2', 'A',
            'K', 'Q', 'J', '10', '9', '8', '7', '6']
     wb = load_workbook('output.xlsx')
     sheet = wb['Sheet1']
     for nm in num:
         exec('count' + nm + '=[]')
-    for i in range(10000):
+    for i in range(100000):
         a = BH()
         for i in a:
             c = [x[3:] if len(x) > 3 else x for x in a[i]]
@@ -22,8 +25,8 @@ def main():
             exec('count_J.append({})'.format(Jnm))
             exec('count_Jocker.append({})'.format(jnm + Jnm))
 
+    gg = 67
     for d in num:
-        gg = 67
         g = chr(gg)
         for y in range(17):
             exec("gl = count{}.count(y)/(len(count{})/100)".format(d, d))
@@ -35,7 +38,16 @@ def main():
                 exec("print('{}个{}的概率为'+str(gl)+'%')".format(str(y), '大王'))
             else:
                 exec("print('{}个{}的概率为'+str(gl)+'%')".format(str(y), '王'))
-            
+            exec("sheet['{}{}'] = gl/100".format(g, str(y+3)))
+            sheet['{}{}'.format(g, str(y+3))].number_format = '0.00%'
+
+        gg += 1
+    wb.save('output.xlsx')
+    end_time = datetime.datetime.now()
+    time = (end_time - start_time).seconds
+    m, s = divmod(time, 60)
+    h, m= divmod(m, 60)
+    print('✅ 运行时间：{}小时{}分{}秒'.format(h, m, s))
 
 
 def BH():
